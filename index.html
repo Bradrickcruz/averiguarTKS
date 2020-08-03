@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <style>
+      * {
+        background-color: #f5f5f5;
+      }
+      .localContainer {
+        border: 1px solid grey;
+        border-radius: 20px;
+        padding: 2rem;
+      }
+      .flexRow {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-bottom: 1rem;
+      }
+      .result {
+        display: flex;
+        flex-direction: column;
+        border: 3px solid #26a69a;
+        border-radius: 20px;
+        padding: 1rem;
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+      .OK {
+        border: 1px solid #26a69a;
+      }
+      .NotOK {
+        border: 1px solid #ef5350;
+      }
+      .resultTitle {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+      .resultContent {
+        font-size: 1.2rem;
+      }
+    </style>
+    <title>AveriguarJS</title>
+  </head>
+  <body>
+    <h2 class="center">Averiguar situação aluno TKS</h2>
+    <div class="container localContainer">
+      <form id="ftks">
+        <label>
+          Nome do aluno:
+          <input
+            type="text"
+            name=""
+            id="nome"
+            placeholder="Ex: Marco Aurélio"
+          />
+        </label>
+
+        <label>
+          previsão de término:
+          <input type="date" name="" id="futureDate" />
+        </label>
+
+        <div class="flexRow">
+          <label style="margin-right: 2rem;">
+            Número de aulas restantes:
+            <input
+              type="number"
+              min="0"
+              name=""
+              id="aulas"
+              placeholder="Ex: 12"
+            />
+          </label>
+
+          <label>
+            Número de avaliações restantes:
+            <input
+              type="number"
+              min="1"
+              name=""
+              id="provas"
+              placeholder="Ex: 4"
+            />
+          </label>
+        </div>
+
+        <div class="right-align">
+          <input class="btn" type="submit" value="Averiguar" />
+        </div>
+      </form>
+    </div>
+    <div class="result container hide"></div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
