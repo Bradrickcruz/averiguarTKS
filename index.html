@@ -8,7 +8,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
     <link rel='stylesheet' href='index.css'/>
-    <title>AveriguarJS</title>
+    <title>AveriguarTKS</title>
   </head>
   <body>
     <h2 class="center">Averiguar situação aluno TKS</h2>
@@ -52,11 +52,15 @@
         </div>
 
         <div class="right-align">
-          <input class="btn" type="submit" value="Averiguar" />
+          <button class='btn' type="submit">Averiguar</button>
+          <!-- <input class="btn" type="submit" value="Averiguar" /> -->
         </div>
+            <div class="right-align">
+              <button id='clear' class='btn amber lighten-1'>Limpar Formulário</button>
+            </div>
       </form>
     </div>
-    <div class="result container hide"></div>
+    <div id='result' class="result container hide"></div>
 
     <script src="index.js"></script>
   </body>

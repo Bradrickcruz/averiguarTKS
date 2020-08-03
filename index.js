@@ -1,15 +1,22 @@
 window.addEventListener("load", () => {
-  const date = document.querySelector("#futureDate");
+  let date = document.querySelector("#futureDate");
   date.value = getTodayOnISOString();
 
   let form = document.querySelector("#ftks");
   form.addEventListener("submit", (e) => {
     e.preventDefault();
+    console.log('submit')
+    console.log(e)
+    if (e.submitter === 'clear'){
+      return false
+    }
     let courseDurationWeeks = calculateDiffOfDatesOnWeeks();
     let classesWeeks = calculateCourseDurantionOnWeeks();
     let classesPerWeek = Math.ceil(classesWeeks / courseDurationWeeks);
     mountResult(courseDurationWeeks, classesWeeks, classesPerWeek);
   });
+  let clearBtn = document.querySelector('#clear')
+  clearBtn.addEventListener('click',clearForm)
 });
 
 // retorna o dia de hoje em ISOstring
@@ -76,4 +83,26 @@ function addbits(s) {
     total += parseFloat(s.shift());
   }
   return total;
+}
+
+function clearForm(e){
+  console.log("clear")
+  console.log(e)
+  const name = document.querySelector('#nome')
+  name.value = '';
+
+  const date = document.querySelector("#futureDate");
+  date.value = getTodayOnISOString();
+
+
+  const aulas = document.querySelector('#aulas') 
+  aulas.value = ''
+
+  const provas = document.querySelector("#provas")
+  provas.value=''
+
+  const result = document.querySelector("#result")
+  result.classList.add("hide")
+
+
 }
