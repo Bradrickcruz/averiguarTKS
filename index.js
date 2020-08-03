@@ -24,8 +24,7 @@ function getTodayOnISOString() {
 function calculateCourseDurantionOnWeeks() {
   let aulas = document.querySelector("#aulas");
   let provas = document.querySelector("#provas");
-  let total = Number(aulas.value) + Number(provas.value);
-  // console.log(total)
+  let total = addbits(aulas.value) + addbits(provas.value);
   let weeks = Math.round(total / 2);
   console.log("semanas de curso:", weeks);
   return weeks;
@@ -48,19 +47,33 @@ function mountResult(course, classes, classesPerWeek) {
   let divResult = document.querySelector(".result");
   let nome = document.querySelector("#nome").value;
 
-  divResult.classList.remove("hide",'OK','NotOK');
+  divResult.classList.remove("hide", "OK", "NotOK");
   divResult.classList.add(classesPerWeek == 1 ? "OK" : "NotOK");
 
   divResult.innerHTML = `
   <span class="resultTitle">Aluno: ${nome}</span>
-  <span class="resultContent">Semanas até o fim do prazo: <b>${course} semana</b></span>
-  <span class="resultContent">Total de curso restante em semanas: <b>${classes}(${
-    classes * 2
-  }h) de aula</b></span>
+  <span class="resultContent">Semanas até o fim do prazo: <b>${course} semanas</b></span>
   <span class="resultContent">
-    Frequência ideal de aulas: <b>${classesPerWeek}(${
-    classesPerWeek * 2
-  }h) por semana</b>
+    Total de curso restante em semanas: 
+    <b>${classes}(${classes * 2}h) de aula
+    </b>
+  </span>
+  <span class="resultContent">
+    Frequência ideal de aulas: 
+    <b>
+    ${classesPerWeek}(${classesPerWeek * 2}h) aulas por semana
+    </b>
   </span>
   `;
+}
+
+// retorna resultado de string com expressão matemática de adição ou subtração
+function addbits(s) {
+  var total = 0,
+    s = s.match(/[+\-]*(\.\d+|\d+(\.\d+)?)/g) || [];
+
+  while (s.length) {
+    total += parseFloat(s.shift());
+  }
+  return total;
 }
