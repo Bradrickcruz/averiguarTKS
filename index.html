@@ -7,7 +7,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
-    <link rel='stylesheet' href='index.css'/>
+    <link rel="stylesheet" href="index.css" />
     <title>AveriguarTKS</title>
   </head>
   <body>
@@ -32,35 +32,25 @@
         <div class="flexRow">
           <label style="margin-right: 2rem;">
             Número de aulas restantes:
-            <input
-              type="text"
-              name=""
-              id="aulas"
-              placeholder="Ex: 12"
-            />
+            <input type="text" name="" id="aulas" placeholder="Ex: 12" />
           </label>
 
           <label>
             Número de avaliações restantes:
-            <input
-              type="text"
-              name=""
-              id="provas"
-              placeholder="Ex: 4"
-            />
+            <input type="text" name="" id="provas" placeholder="Ex: 4" />
           </label>
         </div>
 
         <div class="right-align">
-          <button class='btn' type="submit">Averiguar</button>
+          <button id="clear" type="reset" class="btn orange lighten-1">
+            Limpar
+          </button>
+          <button class="btn" type="submit">Averiguar</button>
           <!-- <input class="btn" type="submit" value="Averiguar" /> -->
         </div>
-            <div class="right-align">
-              <button id='clear' class='btn amber lighten-1'>Limpar Formulário</button>
-            </div>
       </form>
     </div>
-    <div id='result' class="result container hide"></div>
+    <div id="results" class="hide"></div>
 
     <script src="index.js"></script>
   </body>
