@@ -1,46 +1,42 @@
-window.addEventListener("load", () => {
-  let date = document.querySelector("#futureDate");
-  date.value = getTodayOnISOString();
+$(() => {
+  let date = $("#futureDate");
+  date.val(getTodayOnISOString())
 
-  let form = document.querySelector("#ftks");
-  form.addEventListener("submit", (e) => {
+  $("#ftks").on("submit", (e) => {
     e.preventDefault();
-    console.log('submit')
     let courseDurationWeeks = calculateDiffOfDatesOnWeeks();
     let classesWeeks = calculateCourseDurantionOnWeeks();
     let classesPerWeek = Math.ceil(classesWeeks.weeks / courseDurationWeeks);
     mountResult(courseDurationWeeks, classesWeeks, classesPerWeek);
   });
-  let clearBtn = document.querySelector('#clear')
-  clearBtn.addEventListener('click',clearForm)
+  $("#clear").click(clearForm);
 
-  date.addEventListener('change',(e)=>{console.log(e.target.value)})
+  // date.on("change", (e) => {
+  //   console.log(e.target.value);
+  // });
 });
 
 // retorna o dia de hoje em ISOstring
 function getTodayOnISOString() {
   let today = new Date();
   today = today.toISOString().slice(0, 10);
-  console.log(today)
   return today;
 }
 
 // calcula a quantidade de semanas para terminar o curso
 function calculateCourseDurantionOnWeeks() {
-  let aulas = document.querySelector("#aulas");
-  let provas = document.querySelector("#provas");
-  let total = addbits(aulas.value) + addbits(provas.value);
+  let aulas = $("#aulas");
+  let provas = $("#provas");
+  let total = addbits(aulas.val()) + addbits(provas.val());
   let weeks = Math.round(total / 2);
   // console.log("semanas de curso:", weeks);
-  return {exact:total, weeks:weeks};
+  return { exact: total, weeks: weeks };
 }
 
 // calcula a quantidade de semanas restantes até o fim do curso
 function calculateDiffOfDatesOnWeeks() {
   let today = new Date().getTime();
-  let futureDate = new Date(
-    document.querySelector("#futureDate").value
-  ).getTime();
+  let futureDate = new Date($("#futureDate").val()).getTime();
   let diff = Math.abs(today - futureDate);
   let days = Math.ceil(diff / (1000 * 60 * 60 * 24));
   let weeks = Math.round(days / 7);
@@ -49,15 +45,17 @@ function calculateDiffOfDatesOnWeeks() {
 
 // monta o resultado abaixo do container
 function mountResult(course, classes, classesPerWeek) {
-  let divResults = document.querySelector("#results");
-  let nome = document.querySelector("#nome").value;
+  let divResults = $("#results");
+  let nome = $("#nome").val();
 
-  divResults.classList.remove("hide");
+  divResults.removeClass("hide");
 
-  let now = new Date().toLocaleString().slice(0,16)
+  let now = new Date().toLocaleString().slice(0, 16);
 
-  divResults.innerHTML = `
-  <div id="result" class="result container ${classesPerWeek == 1 ? "OK" : "NotOK"}">
+  divResults.html(`
+  <div id="result" class="result container ${
+    classesPerWeek == 1 ? "OK" : "NotOK"
+  }">
     <div style="display:flex;align-items:center;justify-content:space-between">
       <span class="resultTitle">Aluno: ${nome}</span>
       <span><i style="font-size:1.2rem">Data da consulta: ${now}</i></span>
@@ -75,14 +73,14 @@ function mountResult(course, classes, classesPerWeek) {
       </b>
     </span>
   </div>
-  ${divResults.innerHTML}
-  `;
+  ${divResults.html()}
+  `);
 }
 
 // retorna resultado de string com expressão matemática de adição ou subtração
 function addbits(s) {
   var total = 0;
-    s = s.match(/[+\-]*(\.\d+|\d+(\.\d+)?)/g) || [];
+  s = s.match(/[+\-]*(\.\d+|\d+(\.\d+)?)/g) || [];
 
   while (s.length) {
     total += parseFloat(s.shift());
@@ -90,30 +88,19 @@ function addbits(s) {
   return total;
 }
 
-function clearForm(){
-  console.log("clear")
-  const name = document.querySelector('#nome')
-  name.value = '';
+function clearForm() {
+  $("#nome").val("");
 
-  let date = document.querySelector("#futureDate");
-  date.value = ''
+  $("#futureDate").val("");
 
+  $("#aulas").val("");
 
-  const aulas = document.querySelector('#aulas') 
-  aulas.value = ''
+  $("#provas").val("");
 
-  const provas = document.querySelector("#provas")
-  provas.value=''
-
-  const results = document.querySelector("#results")
-  results.innerHTML = ''
-  results.classList.add("hide")
-
-
+  $("#results").html("").addClass("hide");
 }
 
-function selectMultAndDivis(string){
-  const multiDivPattern = /[*\\]+(\.\d+|\d+(\.\d+)?)/g
-  const SumSubPattern = /[+\-]+(\.\d+|\d+(\.\d+)?)/g
-
+function selectMultAndDivis(string) {
+  const multiDivPattern = /[*\\]+(\.\d+|\d+(\.\d+)?)/g;
+  const SumSubPattern = /[+\-]+(\.\d+|\d+(\.\d+)?)/g;
 }
